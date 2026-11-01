@@ -29,8 +29,7 @@ questions.py
 statistics.py
 
 Tests are in tests/test_academy.py, tests/test_campus_shop.py,
-tests/test_game.py and tests/test_web.py. Include these with the source submission
-where folder uploads are supported. To run the tests from the project folder:
+tests/test_game.py and tests/test_web.py. To run the tests from the project folder:
 python3 -m unittest discover -s tests -v
 
 EXTERNAL FILES AND FULL PROJECT
@@ -51,13 +50,7 @@ README.md in the repository has the full feature guide and credits.
 
 SAVING
 Completed progress saves locally to ~/.codequest/profiles.json on the computer
-running Python. Player saves are not included in the submission or repository.
-
-SUBMISSION NOTE
-The provided staff notice asks for README.txt and Python files on Ed, with a link
-to external files if necessary. A Padlet or GitHub link alone does not replace the
-Ed source submission. Finish all linked-file and README edits before the stated
-11:59 pm Sunday deadline; do not modify the linked submission files afterward.
+running Python. 
 
 AI ACKNOWLEDGEMENT
 

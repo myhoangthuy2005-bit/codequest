@@ -21,6 +21,7 @@ async function act(action,data={},change=true){
 function themeProps(name=S.profile.theme){const t=S.themes[name];return `--card-fill:${t.fill};--card-ink:${t.ink};--edge:${t.edge}`;}
 function themeClass(name=S.profile.theme){return {parchment:'parchment',terminal:'terminal',botanical:'botanical',royal:'royal'}[S.themes[name].motif];}
 function chime(){if(!S.profile.settings.sound)return;try{const C=window.AudioContext||window.webkitAudioContext;const context=new C(),o=context.createOscillator(),g=context.createGain();o.connect(g);g.connect(context.destination);o.frequency.value=660;g.gain.setValueAtTime(.05,context.currentTime);g.gain.exponentialRampToValueAtTime(.001,context.currentTime+.17);o.start();o.stop(context.currentTime+.18);o.onended=()=>context.close();}catch{}}
+// Apply the saved music preference and handle browser playback restrictions.
 async function syncMusic(){if(S.profile.settings.music){if(music.paused)try{await music.play();}catch{note('Click “Start music” to allow audio in your browser.');}}else music.pause();}
 function navigate(page){view=page;render();window.scrollTo(0,0);}
 function render(){

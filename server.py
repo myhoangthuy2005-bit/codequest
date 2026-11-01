@@ -250,6 +250,8 @@ class Handler(BaseHTTPRequestHandler):
         path=(ROOT/'static'/('index.html' if route=='/' else route.lstrip('/'))).resolve()
         if not path.is_relative_to((ROOT/'static').resolve()) or not path.is_file():self.send_bytes(404,b'Not found','text/plain');return
         self.send_bytes(200,path.read_bytes(),mimetypes.guess_type(path)[0] or 'application/octet-stream')
+    # Validate browser actions and apply game rules in Python.
+    # Return the updated state as JSON for the browser to display.
     def do_POST(self):
         if self.path!='/api/action':self.send_bytes(404,b'{}');return
         origin=self.headers.get('Origin')

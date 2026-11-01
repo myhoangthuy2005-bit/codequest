@@ -17,6 +17,8 @@ class LabTask:
 
 class ExpressionError(ValueError):pass
 
+# Parse the player's expression and recursively evaluate supported AST nodes.
+# Restrict operations and expression size instead of executing arbitrary code.
 def evaluate(expression,context):
     if len(expression)>240:raise ExpressionError('Keep your expression under 240 characters.')
     try:tree=ast.parse(expression,mode='eval')
