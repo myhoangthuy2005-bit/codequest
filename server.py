@@ -1,6 +1,6 @@
 """CodeQuest browser app. Python owns rules, scoring, timers and persistent profiles.
 
-Run: python3 server.py, then open http://127.0.0.1:8000.
+Run: python3 main.py, then open http://127.0.0.1:8000.
 No external Python dependencies. Intended for local use on a trusted computer.
 """
 import argparse
@@ -269,7 +269,8 @@ class Handler(BaseHTTPRequestHandler):
 def make_server(port=8000,path=None,host='127.0.0.1'):
     server=ThreadingHTTPServer((host,port),Handler);server.app=WebApp(path);return server
 
-if __name__=='__main__':
+def main():
+    """Launch the browser game's Python server; called by main.py."""
     parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('--port',type=int,default=int(os.environ.get('PORT','8000')))
     parser.add_argument('--strictPort',action='store_true',help=argparse.SUPPRESS);parser.add_argument('--host',default='127.0.0.1');parser.add_argument('--data',type=Path,default=None)
     args=parser.parse_args();server=make_server(args.port,args.data,args.host)
@@ -277,3 +278,7 @@ if __name__=='__main__':
     try:server.serve_forever()
     except KeyboardInterrupt:pass
     finally:server.server_close()
+
+
+if __name__ == '__main__':
+    main()

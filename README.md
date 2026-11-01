@@ -10,13 +10,13 @@ preserved separately; this folder is a complete, independent web edition.
 ## Start in three steps
 
 1. Install Python 3.10 or newer if it is not installed.
-2. Open a terminal inside the extracted project folder containing `server.py`.
-3. Run `python3 server.py` (Windows: `py server.py`), then open
+2. Open a terminal inside the extracted project folder containing `main.py`.
+3. Run `python3 main.py` (Windows: `py main.py`), then open
    **http://127.0.0.1:8000** in your browser.
 
 Keep the terminal running while playing. Ctrl+C stops the server. No pip, Node,
 npm or Tkinter is required. Do not open index.html directly; it needs Python.
-If port 8000 is occupied, run `python3 server.py --port 8001` and open port 8001.
+If port 8000 is occupied, run `python3 main.py --port 8001` and open port 8001.
 
 ## Features
 
@@ -52,7 +52,7 @@ Completed rounds, profiles, settings, notebooks, coins and daily records save to
 same format and default location as the desktop edition, so existing profiles can
 be reused. Do not run both editions simultaneously against the same save file.
 
-To use a separate save file: `python3 server.py --data ./local-data/profiles.json`.
+To use a separate save file: `python3 main.py --data ./local-data/profiles.json`.
 The data folder is excluded by .gitignore. JSON writes use atomic replacement;
 damaged saves are preserved and a warning is displayed. Back up your data.
 
@@ -92,6 +92,7 @@ The COMP9001 exam sentence and pictured clock are story context, not an exam dat
 
 ## Structure
 
+- main.py: the project entry point; run this file to start CodeQuest.
 - server.py: standard-library HTTP server and browser session controller.
 - game.py: interface-independent Round and Duel rules reused from the desktop app.
 - questions.py: authored question data and study tips.
