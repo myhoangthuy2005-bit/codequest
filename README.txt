@@ -58,3 +58,7 @@ The provided staff notice asks for README.txt and Python files on Ed, with a lin
 to external files if necessary. A Padlet or GitHub link alone does not replace the
 Ed source submission. Finish all linked-file and README edits before the stated
 11:59 pm Sunday deadline; do not modify the linked submission files afterward.
+
+AI ACKNOWLEDGEMENT
+
+ChatGPT/Codex (OpenAI) assisted with planning, generating and revising the Python backend and web interface, debugging, testing, documentation and GitHub setup. OpenAI image generation created the campus illustrations and title artwork. The soundtrack was synthesised using AI-assisted Python code.
