@@ -1,0 +1,12 @@
+"""Short lessons paired with the topics in the question bank."""
+LESSONS={
+'Arithmetic':('Python follows precedence: parentheses, powers, multiplication/division, then addition/subtraction. / produces a float; // floors the quotient; % gives the remainder.', '2 + 3 * 4 → 14\n7 / 2 → 3.5\n7 // 2 → 3\n7 % 2 → 1'),
+'Variables':('Assignment binds a name to a value. Trace updates in order. Copying an integer value is different from giving two names to the same mutable list.', 'x = 2\nx = x + 5\nx → 7\n\na = [1, 2]\nb = a\nb.append(3)\na → [1, 2, 3]'),
+'Strings':('Strings are sequences of characters. + joins, * repeats, and methods such as strip/lower return new strings. A quoted number is still a string.', '" code ".strip() → \'code\'\n"Py".lower() → \'py\'\n"a" * 3 → \'aaa\'\nlen("12") → 2'),
+'Lists':('List indices start at zero. -1 selects the last item. Slices return lists. Mutating methods such as append change a list and usually return None.', 'nums = [2, 4, 6]\nnums[0] → 2\nnums[-1] → 6\nnums[0:1] → [2]\nnums.append(8) → None'),
+'Slicing':('Use sequence[start:stop:step]. Start is included; stop is excluded. Omitted bounds use sequence ends. A negative step moves backwards.', '"python"[1:3] → \'yt\'\n"python"[-3:] → \'hon\'\n[0, 1, 2, 3][::2] → [0, 2]\n"code"[::-1] → \'edoc\''),
+'Boolean logic':('not reverses truth. and stops at a falsey operand; or stops at a truthy operand. They return operands, which need not be Booleans. Empty collections and zero are falsey.', 'not False → True\nTrue and False → False\n"" or "ready" → \'ready\'\nbool("False") → True'),
+'Functions':('Arguments provide input. return supplies the result. A function without an explicit returned value produces None. Default arguments apply when an argument is omitted.', 'def add(x, y=2):\n    return x + y\nadd(3) → 5\n\ndef no_return(x):\n    x + 1\nno_return(2) → None'),
+'Nested expressions':('Evaluate inside out, tracking both value and type at every step. len counts the outer collection, not all nested elements.', 'len(str(abs(-123)))\nabs(-123) → 123\nstr(123) → \'123\'\nlen(\'123\') → 3'),
+'List comprehensions':('A comprehension builds a list: [expression for item in iterable if condition]. Trace the iterable, filter, then expression. A conditional expression changes an item; a filter removes it.', '[x*x for x in range(5) if x % 2]\nrange(5) → 0, 1, 2, 3, 4\nkeep odd x → 1, 3\nsquare each → [1, 9]'),
+}

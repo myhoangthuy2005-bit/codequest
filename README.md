@@ -10,7 +10,7 @@ preserved separately; this folder is a complete, independent web edition.
 ## Start in three steps
 
 1. Install Python 3.10 or newer if it is not installed.
-2. Open a terminal inside this extracted `codequest-web` folder.
+2. Open a terminal inside the extracted project folder containing `server.py`.
 3. Run `python3 server.py` (Windows: `py server.py`), then open
    **http://127.0.0.1:8000** in your browser.
 
@@ -75,7 +75,7 @@ authentication: the current local profile list, progress and exports are shared
 by people using the same server. It is not an account-based multi-user service.
 
 Do not change --host to 0.0.0.0 for public deployment without adapting that data
-model and deployment setup. The included development command is for preview only.
+model and deployment setup. The default command binds only to your own computer.
 The project remains predominantly Python in its game and persistence logic.
 
 ## Controls and rules

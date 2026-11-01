@@ -1,0 +1,26 @@
+# Python cache and local environments
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Operating-system files
+.DS_Store
+Thumbs.db
+
+# Local editor configuration
+.vscode/
+.idea/
+
+# Local secrets and player saves
+.env
+.env.*
+.codequest/
+profiles.json
+progress.json
+
+# Generated archives
+*.zip
+
+# Optional separate local save folder
+local-data/
