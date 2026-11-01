@@ -7,6 +7,7 @@ import uuid
 from datetime import datetime
 from pathlib import Path
 from statistics import Statistics
+from campus_shop import CATALOGUE, normalize_cosmetics
 
 DEFAULT_SETTINGS = dict(timer=0, music=False, large_text=False, high_contrast=False, sound=False, animations=True)
 THEMES = {
@@ -40,6 +41,7 @@ class ProfileStore:
                     raise ValueError('Invalid results')
                 if type(p.get('coins')) is not int or p['coins'] < 0:
                     raise ValueError('Invalid balance')
+                normalize_cosmetics(p)
                 p['settings'] = dict(DEFAULT_SETTINGS, **{k:v for k,v in p.get('settings',{}).items() if k in DEFAULT_SETTINGS})
                 for key in ('large_text','high_contrast','sound','animations','music'):
                     if type(p['settings'][key]) is not bool: p['settings'][key] = DEFAULT_SETTINGS[key]
@@ -83,6 +85,7 @@ class ProfileStore:
         previous=list(results or [])
         self.profiles[pid]=dict(name=name,results=previous,coins=sum(max(0,r['points'])//10 for r in previous),
             owned=['Classic parchment'],theme='Classic parchment',settings=dict(DEFAULT_SETTINGS),daily={},tutorial_done=False)
+        normalize_cosmetics(self.profiles[pid])
         if not self.active_id:self.data['active']=pid
         if save:self.save()
         return pid
@@ -129,6 +132,17 @@ class ProfileStore:
             if p['coins']<cost:raise ValueError(f'You need {cost-p["coins"]} more coins.')
             p['coins']-=cost;p['owned'].append(name)
         p['theme']=name;self.save()
+
+    def purchase_cosmetic(self,pid,item_id):
+        if not isinstance(item_id,str) or item_id not in CATALOGUE:
+            raise ValueError('Unknown Campus Shop item.')
+        profile=self.profiles[pid];inventory=normalize_cosmetics(profile);item=CATALOGUE[item_id]
+        if item_id not in inventory['owned']:
+            if profile['coins']<item['price']:
+                raise ValueError(f"You need {item['price']-profile['coins']} more coins.")
+            profile['coins']-=item['price'];inventory['owned'].append(item_id)
+        inventory['equipped'][item['category']]=item_id
+        self.save()
 
     def complete_daily(self,pid,day,score,completed):
         p=self.profiles[pid];old=p['daily'].get(day,{})

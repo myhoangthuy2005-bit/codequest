@@ -19,6 +19,7 @@ from pathlib import Path
 from threading import RLock
 from urllib.parse import urlparse
 
+from campus_shop import CATALOGUE, CATEGORIES
 from academy import (ProfileStore, THEMES, badge_progress, daily_questions,
                      export_report, local_day, mistake_rows, recommended_level)
 from expression_lab import LabRound, TASKS
@@ -77,7 +78,7 @@ class BrowserGame:
             length=data.get('rounds',5)
             if length not in (5,15,len(QUESTIONS)):raise ValueError('Choose 5, 15 or 54 rounds.')
             self.duel_ids=ids;self.duel=Duel(QUESTIONS,length)
-            for i,pid in enumerate(ids):self.duel.players[i]['name']=self.store.profiles[pid]['name']
+            for i,pid in enumerate(ids):self.duel.players[i]['name']=self.store.profiles[pid]['name'];self.duel.players[i]['title']=CATALOGUE[self.store.profiles[pid]['cosmetics']['equipped']['title']]['name']
             self.page='handoff';self.remaining=0;return
         self.pool=TASKS if mode=='lab' else QUESTIONS
         topics=data.get('topics',[])
@@ -138,11 +139,13 @@ class BrowserGame:
     def state(self):
         self.update_clock();p=self.profile
         out=dict(page=self.page,mode=self.mode,profile_id=self.pid,profile=p,profiles=[dict(id=i,name=x['name']) for i,x in self.store.profiles.items()],
-                 themes=THEMES,lessons=LESSONS,topics=[dict(topic=q.topic,difficulty=q.difficulty) for q in TOPICS],
+                 themes=THEMES,shop=CATALOGUE,shop_categories=CATEGORIES,lessons=LESSONS,topics=[dict(topic=q.topic,difficulty=q.difficulty) for q in TOPICS],
                  badges=badge_progress(p['results']),summary=self.summary(p['results']),message=self.message,
                  warning=self.store.warning,score=self.score,lives=self.lives,remaining=self.remaining,paused=self.paused,
                  challenge_index=len(self.results)+1,tutorial_needed=not p['tutorial_done'],daily=p['daily'].get(local_day(),{}),day=local_day(),
                  last_result=self.last_result)
+        active_pid=self.duel_ids[self.duel.turn] if self.duel else self.pid
+        out['active_cosmetics']=self.store.profiles[active_pid]['cosmetics']['equipped']
         if self.duel:
             out['duel']=dict(players=self.duel.players,turn=self.duel.turn,number=self.duel.round_number,total=self.duel.total_rounds,
                              finished=self.duel.finished,result=self.duel.result_message,summary_index=self.summary_index,profile_ids=self.duel_ids)
@@ -203,6 +206,7 @@ class BrowserGame:
                 if type(value) is not bool:raise ValueError('Invalid setting.')
             else:raise ValueError('Unknown setting.')
             self.profile['settings'][key]=value;self.store.save()
+        elif action=='purchase_cosmetic':self.store.purchase_cosmetic(self.pid,data.get('item'))
         elif action=='purchase':self.store.purchase(self.pid,data.get('theme'))
         elif action=='tutorial_done':self.profile['tutorial_done']=True;self.store.save()
         elif action!='state':raise ValueError('Unknown action.')

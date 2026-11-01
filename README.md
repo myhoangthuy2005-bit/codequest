@@ -36,7 +36,7 @@ If port 8000 is occupied, run `python3 server.py --port 8001` and open port 8001
 - Nine mini-lessons, answer explanations, saved mistake notebook, targeted
   practice, strengths/practice summaries, wins/losses and accuracy.
 - Named local profiles, five achievement badges with progress, earned coins,
-  Campus Shop themes and consistent monospaced code typography.
+  Campus Shop collections and consistent monospaced code typography.
 - An ornate gold target card and clear spacing above and below its value.
 - Larger text, high contrast, labelled states, reduced-motion support, keyboard
   controls and layouts that stack on narrow screens.
@@ -96,6 +96,7 @@ The COMP9001 exam sentence and pictured clock are story context, not an exam dat
 - game.py: interface-independent Round and Duel rules reused from the desktop app.
 - questions.py: authored question data and study tips.
 - academy.py: profiles, progress, coins, badges, exports and daily selection.
+- campus_shop.py: cosmetic catalogue and backwards-compatible inventory migration.
 - statistics.py: feedback/statistics helpers.
 - expression_lab.py: guided exercises and recursive bounded expression interpreter.
 - lessons.py: worked mini-lessons.
@@ -106,7 +107,7 @@ The COMP9001 exam sentence and pictured clock are story context, not an exam dat
 ## Validation
 
 Run `python3 -m unittest discover -s tests -v` from this folder.
-30 automated tests validate the card bank, expression solutions, file handling,
+36 automated tests validate the card bank, expression solutions, file handling,
 profile isolation, daily rewards, scoring, topic continuity, duel fairness, timeout,
 paused clocks, hidden current answers, actual HTTP cookies/endpoints, origin checks,
 path traversal rejection and export downloads.
@@ -121,3 +122,30 @@ CodeQuest is an educational Python revision game inspired by matching/associatio
 card games. Campus and title artwork are generated illustrations; Campus evening
 is an original synthesised soundtrack. This is a student project, not an official
 University of Sydney product.
+
+## Expanded Campus Shop
+
+Five independent collections let you combine one item of each type. Buy once and
+equip again for free; all items are cosmetic and save per player profile. Existing
+coins, results, badges and old card-surface purchases remain available.
+
+| Collection | Unlocks | Coin prices |
+| --- | --- | --- |
+| Campus backgrounds | Jacaranda afternoon; Fisher after hours; Rainy Quadrangle | 80 / 100 / 120 |
+| Player titles | Midnight Coder; Python Scholar; Campus Codebreaker | 25 / 45 / 60 |
+| Victory effects | Jacaranda shower; Golden moment; Code celebration | 40 / 60 / 70 |
+| Card ornaments | Gothic arches; Jacaranda vines; Illuminated gold | 35 / 45 / 70 |
+| Card surfaces | Midnight slate; Forest study; Royal purple | 60 / 80 / 100 |
+
+The original background, Student title, quiet celebration, academy ornament and
+parchment surface are free. Backgrounds apply throughout the game, with a darker
+overlay behind playing screens for readability. Player titles appear beside the
+profile and on duel handover cards. Equipped victory effects play after scored
+wins (including the correct duel player's chosen effect), never tutorial rounds.
+Preview effects before purchasing. Animation-off and system reduced-motion
+preferences suppress effects. Ornaments combine with any card surface and keep
+code in a consistent monospaced font.
+
+The artwork is campus-inspired fantasy illustration, not documentary imagery of
+the named university spaces. The shop uses category tabs and compact side-by-side
+previews to reduce scrolling on laptop screens; narrow screens still scroll.
