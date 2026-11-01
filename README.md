@@ -119,7 +119,7 @@ own phone/browser before presenting. Speaker output cannot be verified remotely.
 
 ## Credits
 
-Built by Thuy My Hoang as the Final Project for COMP9001,CodeQuest is an educational 
+Built by Thuy My Hoang as the Final Project for COMP9001, CodeQuest is an educational 
 Python revision game inspired by matching/association card games. Campus and title 
 artwork are generated illustrations; Campus evening is an original synthesised 
 soundtrack. This is a student project, not an official University of Sydney product.
