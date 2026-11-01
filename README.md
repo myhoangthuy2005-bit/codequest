@@ -150,3 +150,7 @@ code in a consistent monospaced font.
 The artwork is campus-inspired fantasy illustration, not documentary imagery of
 the named university spaces. The shop uses category tabs and compact side-by-side
 previews to reduce scrolling on laptop screens; narrow screens still scroll.
+
+## AI Acknowledgement
+
+ChatGPT/Codex (OpenAI) assisted with planning, generating and revising the Python backend and web interface, debugging, testing, documentation and GitHub setup. OpenAI image generation created the campus illustrations and title artwork. The soundtrack was synthesised using AI-assisted Python code.
